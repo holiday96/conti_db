@@ -1,0 +1,4 @@
+CREATE USER 'unittest'@'%' IDENTIFIED BY 'unittest';
+
+GRANT ALL PRIVILEGES ON *.* TO 'unittest'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;

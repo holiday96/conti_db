@@ -1,0 +1,23 @@
+volumes:
+  conti_db_mysql8_data:
+
+services:
+  conti_db_mysql8:
+    image: mysql:8.0
+    container_name: conti_db_mysql8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: 'Asia/Ho_Chi_Minh'
+    ports:
+      - "3310:3306"
+    volumes:
+      - conti_db_mysql8_data:/var/lib/mysql
+      - ./init_database/:/docker-entrypoint-initdb.d/
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - local_dev_network
+  
+networks:
+  local_dev_network:
+    external: true
+    
