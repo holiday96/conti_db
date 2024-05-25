@@ -1,3 +1,7 @@
+# Before running
+
+Please convert file `/init_database/init_mysql.sh` line endings from CRLF to LF characters
+
 # Run docker
 
 <pre>
