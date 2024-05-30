@@ -96,7 +96,6 @@ CREATE TABLE `users`  (
   `status` tinyint(1) NOT NULL,
   `created_date` datetime(6) NOT NULL,
   `modified_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `role_id` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_username`(`username`) USING BTREE,
   UNIQUE INDEX `uk_email`(`email`) USING BTREE,
