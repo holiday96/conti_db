@@ -86,11 +86,11 @@ INSERT INTO `roles` VALUES (2, 'ROLE_USER', 1, '2024-05-29 12:22:51', 'ADMIN');
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `full_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `full_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -99,11 +99,13 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_username`(`username`) USING BTREE,
   UNIQUE INDEX `uk_email`(`email`) USING BTREE,
-  UNIQUE INDEX `uk_phone`(`phone`) USING BTREE,
-  UNIQUE INDEX `UKr43af9ap4edm43mmtq01oddj6`(`username`) USING BTREE,
-  UNIQUE INDEX `UK6dotkott2kjsp8vw4d0m25fb7`(`email`) USING BTREE,
-  UNIQUE INDEX `UKdu5v5sr43g5bfnji4vb8hg5s3`(`phone`) USING BTREE
+  UNIQUE INDEX `uk_phone`(`phone`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, 'admin1', NULL, 'admin1 address', '01230123', 'admin1@utc.com', 'admin1', '$2a$10$zdL7cqus4Aw6079kB0yzt.x5NrhHBQfhUXzL6KdyZZvmA8vvEj94S', 1, '2024-06-04 23:25:38.223000', 'ROLE_USER');
 
 -- ----------------------------
 -- Table structure for users_roles
@@ -117,5 +119,11 @@ CREATE TABLE `users_roles`  (
   CONSTRAINT `FK2o0jvgh89lemvvo17cbqvdxaa` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FKj6m8fwv7oqv74fcehir1a9ffy` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of users_roles
+-- ----------------------------
+INSERT INTO `users_roles` VALUES (1, 1);
+INSERT INTO `users_roles` VALUES (1, 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
